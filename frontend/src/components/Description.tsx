@@ -1,8 +1,14 @@
 import assets from "../assets/assets"
-
+import {motion} from 'framer-motion'
 const Description = () => {
   return (
-    <div className="flex flex-col items-center justify-center my-24 p-6 md:px-28">
+    <motion.div 
+    initial={{opacity:0.2 , y : 100}}
+    transition={{duration : 1}}
+    whileInView={{opacity : 1 ,  y : 0}}
+    viewport={{once : true}}
+    
+    className="flex flex-col items-center justify-center my-24 p-6 md:px-28">
        <h1 className="text-3xl sm:text-4xl font-semibold bm-2">Create AI Images</h1>
        <p className="text-gray-500 mb-8 text-xl">Turn your imagination into visual art in seconds</p>
 
@@ -17,7 +23,7 @@ const Description = () => {
             <p className="text-gray-600">From playful sketches to breathtaking masterpieces, your imagination is the only limit. Let your thoughts take form and experience the magic of instant artistic expression.</p>
         </div>
        </div>
-    </div>
+    </motion.div>
   )
 }
 
