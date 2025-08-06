@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+const JWT_SECRET = process.env.JWT_SECRET || "jwtsecret"
 const connectDB =  async () =>{
 
     mongoose.connection.on('connected' , ()=>{

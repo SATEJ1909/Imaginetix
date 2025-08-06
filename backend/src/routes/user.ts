@@ -1,4 +1,5 @@
-import { signup , login } from "../controller/user";
+import { signup , login , userCredit} from "../controller/user";
+import { userAuth } from "../middleware/auth";
 import express from 'express'
 
 const userRouter = express.Router();
@@ -7,5 +8,7 @@ const userRouter = express.Router();
 userRouter.post("/signup" , signup);
 //@ts-ignore
 userRouter.post("/login" , login);
+//@ts-ignore
+userRouter.post("/credits" , userAuth , userCredit)
 
 export default userRouter
