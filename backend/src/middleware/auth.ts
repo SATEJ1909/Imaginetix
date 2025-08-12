@@ -5,13 +5,19 @@ import JWT_SECRET from "../config";
 
 export const userAuth = async (req : Request , res : Response , next : NextFunction)=>{
   
-    const authHeader = req.headers.authorization;
+    // const authHeader = req.headers.authorization;
     
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    // if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    //     return res.status(401).json({ error: "Unauthorized" });
+    // }
+    
+    // const token = authHeader.split(" ")[1];
+    
+    const token = req.headers.token ;
+
+    if(!token){
         return res.status(401).json({ error: "Unauthorized" });
     }
-    
-    const token = authHeader.split(" ")[1]; 
 
     try {
         //@ts-ignore
