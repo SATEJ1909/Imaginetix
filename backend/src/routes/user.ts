@@ -9,6 +9,6 @@ userRouter.post("/signup" , signup);
 //@ts-ignore
 userRouter.post("/login" , login);
 //@ts-ignore
-userRouter.post("/credits" , userAuth , userCredit)
+userRouter.get("/credits" , userAuth , userCredit)
 
 export default userRouter
