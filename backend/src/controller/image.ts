@@ -12,8 +12,14 @@ export const generatImage = async (req: Request, res: Response) => {
 
         const user = await userModel.findById(userId);
 
-        if (!user || !prompt) {
-            return res.status(404).json({ success: false, message: 'All fields are necessary' });
+        // if (!user || !prompt) {
+        //     return res.status(404).json({ success: false, message: 'All fields are necessary' });
+        // }
+        if (!prompt) {
+            return res.status(400).json({ success: false, message: 'Prompt is required' });
+        }
+        if (!user) {
+            return res.status(404).json({ success: false, message: 'User not found' });
         }
 
         if (user.creditBalance === 0) {
@@ -38,7 +44,7 @@ export const generatImage = async (req: Request, res: Response) => {
         await userModel.findByIdAndUpdate(user._id, { creditBalance: user.creditBalance - 1 });
 
 
-        res.json({ success: true, message: "Image generated successfully",  creditBalance: user.creditBalance - 1 , image: resultImage });
+        res.json({ success: true, message: "Image generated successfully", creditBalance: user.creditBalance - 1, image: resultImage });
 
     } catch (error: any) {
         console.log(error);
