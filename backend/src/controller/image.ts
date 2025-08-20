@@ -22,9 +22,9 @@ export const generatImage = async (req: Request, res: Response) => {
             return res.status(404).json({ success: false, message: 'User not found' });
         }
 
-        if (user.creditBalance === 0) {
+        if (user.creditBalance === 0 || user.creditBalance < 1 ) {
 
-            res.status(400).json({ success: false, message: "You have no credits left", creditBalance: user.creditBalance });
+            return res.status(400).json({ success: false, message: "You have no credits left", creditBalance: user.creditBalance });
         }
 
         const formData = new FormData();
